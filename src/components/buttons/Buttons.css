@@ -45,3 +45,40 @@
 .delete-btn:focus {
   color: var(--deleteButtonHover);
 }
+
+/* Cancel and Save Button */
+.primary-icon-btn,
+.danger-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3em;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.13s, color 0.13s;
+  outline: none;
+}
+
+.primary-icon-btn {
+  background: var(--plusButton);
+  color: #fff;
+}
+.primary-icon-btn:hover,
+.primary-icon-btn:focus {
+  background: var(--plusButtonHover);
+  color: #fff;
+}
+
+.danger-icon-btn {
+  background: var(--deleteButton);
+  color: #fff;
+}
+.danger-icon-btn:hover,
+.danger-icon-btn:focus {
+  background: var(--deleteButtonHover);
+  color: #fff;
+}

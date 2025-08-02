@@ -6,13 +6,16 @@ import { loadShoppingLists, saveShoppingLists } from "../../utils/localStorage";
 import type { ShoppingList, ShoppingListItem as ItemType } from "../../types";
 
 const ShoppingListPage: React.FC = () => {
+  // Načtení seznamů z localStorage
   const [lists, setLists] = useState<ShoppingList[]>(loadShoppingLists());
   const navigate = useNavigate();
 
-  const handleCreate = (name: string, items: ItemType[]) => {
+  // Vytvoření nového seznamu
+  const handleCreate = (name: string, desc: string, items: ItemType[]) => {
     const newList: ShoppingList = {
       id: Date.now().toString(),
       name,
+      desc,
       items,
     };
     const newLists = [...lists, newList];
@@ -20,17 +23,23 @@ const ShoppingListPage: React.FC = () => {
     saveShoppingLists(newLists);
   };
 
+  // Smazání seznamu
   const handleDelete = (id: string) => {
-    const newLists = lists.filter(l => l.id !== id);
+    const newLists = lists.filter((l) => l.id !== id);
     setLists(newLists);
     saveShoppingLists(newLists);
   };
 
-  // Edit (pro jednoduchost otevřeme stejný formulář s předvyplněnými hodnotami - můžeš rozšířit později)
-  const handleEdit = (id: string) => {
-    alert("Editace názvu bude implementována později."); // nebo otevři modal/form
+  // Editace názvu seznamu
+  const handleEdit = (id: string, newName: string) => {
+    const newLists = lists.map((list) =>
+      list.id === id ? { ...list, name: newName } : list
+    );
+    setLists(newLists);
+    saveShoppingLists(newLists);
   };
 
+  // Proklik na detail seznamu
   const handleSelect = (id: string) => {
     navigate(`/list/${id}`);
   };
@@ -39,14 +48,14 @@ const ShoppingListPage: React.FC = () => {
     <div>
       <h2>Nákupní seznamy</h2>
       <ShoppingListForm
-        existingNames={lists.map(l => l.name)}
+        existingNames={lists.map((l) => l.name)}
         onCreate={handleCreate}
       />
       <h3>Všechny seznamy</h3>
       {lists.length === 0 ? (
         <p>Žádné seznamy</p>
       ) : (
-        lists.map(list => (
+        lists.map((list) => (
           <ShoppingListItem
             key={list.id}
             list={list}

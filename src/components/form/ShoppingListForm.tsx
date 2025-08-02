@@ -106,7 +106,7 @@ const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
         style={{ flexDirection: "column", alignItems: "flex-start" }}
       >
         <div className="shoppinglist-items-block">
-          {rows.map((row, idx) => (
+          {rows.map((row) => (
             <div className="shoppinglist-item-row" key={row.id}>
               <input
                 className={`shoppinglist-input${
