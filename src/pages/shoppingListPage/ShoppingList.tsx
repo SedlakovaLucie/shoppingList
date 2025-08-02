@@ -15,7 +15,6 @@ const ShoppingListPage: React.FC = () => {
     const newList: ShoppingList = {
       id: Date.now().toString(),
       name,
-      desc,
       items,
     };
     const newLists = [...lists, newList];
@@ -46,12 +45,11 @@ const ShoppingListPage: React.FC = () => {
 
   return (
     <div>
-      <h2>Nákupní seznamy</h2>
       <ShoppingListForm
         existingNames={lists.map((l) => l.name)}
         onCreate={handleCreate}
       />
-      <h3>Všechny seznamy</h3>
+      <h2>Nákupní Seznamy</h2>
       {lists.length === 0 ? (
         <p>Žádné seznamy</p>
       ) : (
