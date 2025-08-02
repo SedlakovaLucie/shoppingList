@@ -6,6 +6,7 @@ import "../Buttons.css";
 type Props = {
   onClick?: () => void;
   title?: string;
+  className?: string;
 };
 
 const DeleteButton: React.FC<Props> = ({ onClick }) => (

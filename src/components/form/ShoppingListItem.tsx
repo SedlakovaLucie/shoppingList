@@ -62,8 +62,10 @@ const ShoppingListItem: React.FC<Props> = ({
           >
             {list.name}
           </span>
-          <EditButton onClick={() => setIsEditing(true)} />
-          <DeleteButton onClick={() => onDelete(list.id)} />
+          <div className="shoppinglist-item-actions">
+            <EditButton onClick={() => setIsEditing(true)} />
+            <DeleteButton onClick={() => onDelete(list.id)} />
+          </div>
         </>
       )}
     </div>

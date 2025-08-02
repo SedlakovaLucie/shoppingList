@@ -74,6 +74,19 @@
   margin-bottom: 28px;
 }
 
+.shoppinglist-item-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.shoppinglist-item-wrapper:hover .shoppinglist-item-actions,
+.shoppinglist-item-wrapper:focus-within .shoppinglist-item-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 /* Mobile reponsive */
 @media (max-width: 600px) {
@@ -84,5 +97,9 @@
   .shoppinglist-item-name {
     font-size: 1em;
     padding-right: 4px;
+  }
+  .shoppinglist-item-actions {
+    opacity: 1;
+    pointer-events: auto;
   }
 }

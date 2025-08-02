@@ -5,6 +5,7 @@ import "../Buttons.css";
 type Props = {
   onClick?: () => void;
   title?: string;
+  className?: string; 
 };
 
 const EditButton: React.FC<Props> = ({ onClick }) => (
