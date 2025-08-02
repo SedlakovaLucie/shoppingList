@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { ITEM_UNITS } from "../../types";
 import type { ShoppingListItem } from "../../types";
 import { v4 as uuidv4 } from "uuid";
+import PlusButton from "../buttons/plus/PlusButton";
+import DeleteButton from "../buttons/delete/DeleteButton";
 import "./ShoppingListForm.css";
 
 type Props = {
@@ -138,13 +140,7 @@ const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
                 ))}
               </select>
               {rows.length > 1 && (
-                <button
-                  type="button"
-                  className="shoppinglist-delete"
-                  onClick={() => removeRow(row.id)}
-                >
-                  ×
-                </button>
+                <DeleteButton onClick={() => removeRow(row.id)} />
               )}
             </div>
           ))}
@@ -152,9 +148,7 @@ const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
         {errorItems && (
           <div className="shoppinglist-error">Přidej aspoň jednu položku.</div>
         )}
-        <button type="button" className="shoppinglist-additem" onClick={addRow}>
-          Přidat další položku
-        </button>
+        <PlusButton onClick={addRow} />
       </div>
       <div className="shoppinglist-actions">
         <button

@@ -1,5 +1,8 @@
 import React from "react";
 import type { ShoppingList } from "../../types";
+import EditButton from "../buttons/edit/EditButton";
+import DeleteButton from "../buttons/delete/DeleteButton";
+import ShoppinglistItem from "./ShoppingListItem.css"
 
 type Props = {
   list: ShoppingList;
@@ -28,12 +31,8 @@ const ShoppingListItem: React.FC<Props> = ({
     >
       {list.name}
     </span>
-    <button type="button" onClick={() => onEdit(list.id)}>
-      Upravit
-    </button>
-    <button type="button" onClick={() => onDelete(list.id)}>
-      Smazat
-    </button>
+    <EditButton onClick={() => onEdit(list.id)} />
+    <DeleteButton onClick={() => onDelete(list.id)} />
   </div>
 );
 

@@ -3,6 +3,7 @@ import ShoppingList from "./pages/shoppingListPage/ShoppingList";
 import ShoppingListDetail from "./pages/shoppingListDetailPage/ShoppingListDetail";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 import MainLayout from "./pages/layout/MainLayout";
+import "./components/shared/variables.css"
 
 const App = () => {
   return (
