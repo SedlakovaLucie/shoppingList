@@ -54,9 +54,9 @@
   justify-content: center;
   border: none;
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 1.3em;
+  width: 24px;
+  height: 24px;
+  font-size: 1em;
   cursor: pointer;
   margin-right: 10px;
   transition: background 0.13s, color 0.13s;

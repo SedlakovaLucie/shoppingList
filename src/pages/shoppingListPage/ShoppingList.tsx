@@ -11,7 +11,7 @@ const ShoppingListPage: React.FC = () => {
   const navigate = useNavigate();
 
   // Vytvoření nového seznamu
-  const handleCreate = (name: string, desc: string, items: ItemType[]) => {
+  const handleCreate = (name: string, items: ItemType[]) => {
     const newList: ShoppingList = {
       id: Date.now().toString(),
       name,

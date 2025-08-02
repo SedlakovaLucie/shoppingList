@@ -1,10 +1,11 @@
 :root {
-    --backgroundColor: #D2E0FB;
-    --fontColor: #333;
-    --deleteButton: #dc3545;
+    --backgroundColor: #ffffff;
+    --fontColor: #1a1919;
+    --deleteButton: #cc0000;
     --deleteButtonHover: #b02a37;
     --editButton: #ffc107;
     --editButtonHover: #e0a800;
-    --plusButton: #1D4E89;
-    --plusButtonHover: #163A6B;
+    --plusButton: #1a1919;
+    --plusButtonHover: #373636;
+    --inputBlueColor: #7dbfff;
 }

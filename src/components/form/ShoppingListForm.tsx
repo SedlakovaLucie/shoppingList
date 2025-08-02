@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import PlusButton from "../buttons/plus/PlusButton";
 import DeleteButton from "../buttons/delete/DeleteButton";
 import "./ShoppingListForm.css";
+import logo from "../../assets/seznam_s_logo.svg";
 
 type Props = {
   existingNames: string[];
@@ -41,7 +42,7 @@ const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
     let hasError = false;
 
     if (!name.trim()) {
-      setErrorName("Zadej název seznamu.");
+      setErrorName("Zadej název seznamu");
       hasError = true;
     } else if (existingNames.includes(name.trim())) {
       setErrorName("Seznam s tímto názvem už existuje.");
@@ -82,83 +83,93 @@ const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
   };
 
   return (
-    <div className="shoppinglist-form-outer">
-      <h2>Vytvořit nákupní seznam</h2>
-      <div
-        className="shoppinglist-form-row"
-        style={{ flexDirection: "column", alignItems: "flex-start" }}
+    <div className="shoppinglist-center-wrapper">
+      <form
+        className="shoppinglist-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleCreateList();
+        }}
+        autoComplete="off"
       >
-        <input
-          className={`shoppinglist-input${
-            errorName ? " shoppinglist-error-input" : ""
-          }`}
-          placeholder="Název seznamu"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-            setErrorName(null);
-          }}
-        />
-        {errorName && <div className="shoppinglist-error">{errorName}</div>}
-      </div>
-      <div
-        className="shoppinglist-form-row"
-        style={{ flexDirection: "column", alignItems: "flex-start" }}
-      >
-        <div className="shoppinglist-items-block">
-          {rows.map((row) => (
-            <div className="shoppinglist-item-row" key={row.id}>
-              <input
-                className={`shoppinglist-input${
-                  errorItems ? " shoppinglist-error-input" : ""
-                }`}
-                placeholder="Název položky"
-                value={row.name}
-                onChange={(e) => {
-                  updateRow(row.id, "name", e.target.value);
-                  setErrorItems(false);
-                }}
-              />
-              <input
-                className="shoppinglist-count"
-                type="number"
-                min={1}
-                value={row.count}
-                onChange={(e) =>
-                  updateRow(row.id, "count", Number(e.target.value))
-                }
-              />
-              <select
-                className="shoppinglist-unit"
-                value={row.unit}
-                onChange={(e) => updateRow(row.id, "unit", e.target.value)}
-              >
-                {ITEM_UNITS.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-              {rows.length > 1 && (
-                <DeleteButton onClick={() => removeRow(row.id)} />
-              )}
-            </div>
-          ))}
+        <h2 className="shoppinglist-title">
+          Vytvořit nákupní{" "}
+          <span className="shoppinglist-title-seznam">
+            <img src={logo} alt="S" className="seznam-logo-inline" />
+            eznam
+          </span>
+        </h2>
+
+        <div className="shoppinglist-form-row">
+          <input
+            className={`shoppinglist-input${
+              errorName ? " shoppinglist-error-input" : ""
+            }`}
+            placeholder="Název seznamu"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              setErrorName(null);
+            }}
+          />
+          {errorName && <div className="shoppinglist-error">{errorName}</div>}
         </div>
-        {errorItems && (
-          <div className="shoppinglist-error">Přidej aspoň jednu položku.</div>
-        )}
-        <PlusButton onClick={addRow} />
-      </div>
-      <div className="shoppinglist-actions">
-        <button
-          type="button"
-          className="shoppinglist-submit"
-          onClick={handleCreateList}
-        >
-          Vytvořit seznam
-        </button>
-      </div>
+        <div className="shoppinglist-form-row">
+          <div className="shoppinglist-items-block">
+            {rows.map((row) => (
+              <div className="shoppinglist-item-row" key={row.id}>
+                <input
+                  className={`shoppinglist-input${
+                    errorItems ? " shoppinglist-error-input" : ""
+                  }`}
+                  placeholder="Název položky"
+                  value={row.name}
+                  onChange={(e) => {
+                    updateRow(row.id, "name", e.target.value);
+                    setErrorItems(false);
+                  }}
+                />
+                <input
+                  className="shoppinglist-count"
+                  type="number"
+                  min={1}
+                  value={row.count}
+                  onChange={(e) =>
+                    updateRow(row.id, "count", Number(e.target.value))
+                  }
+                />
+                <select
+                  className="shoppinglist-unit"
+                  value={row.unit}
+                  onChange={(e) => updateRow(row.id, "unit", e.target.value)}
+                >
+                  {ITEM_UNITS.map((unit) => (
+                    <option key={unit} value={unit}>
+                      {unit}
+                    </option>
+                  ))}
+                </select>
+                {rows.length > 1 && (
+                  <DeleteButton onClick={() => removeRow(row.id)} />
+                )}
+              </div>
+            ))}
+          </div>
+          {errorItems && (
+            <div className="shoppinglist-error">
+              Přidej alespoň jednu položku
+            </div>
+          )}
+          <div className="shoppinglist-add-row">
+            <PlusButton onClick={addRow} />
+          </div>
+        </div>
+        <div>
+          <button type="submit" className="shoppinglist-submit">
+            Vytvořit
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

@@ -27,6 +27,7 @@ html {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   color: var(--fontColor);
   font-size: 18px;
+  max-width: 1700px;
   margin: auto;
   min-height: 100%;
 }
@@ -34,10 +35,8 @@ html {
 body {
   transition: all 0.7s linear;
   line-height: 1.5;
-  background: var(--background-gradient);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: var(--backgroundColor);
+
 }
 
 button,
