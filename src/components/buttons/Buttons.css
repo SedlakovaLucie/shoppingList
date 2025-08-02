@@ -65,20 +65,20 @@
 
 .primary-icon-btn {
   background: var(--plusButton);
-  color: #fff;
+  color: var(--backgroundColor);
 }
 .primary-icon-btn:hover,
 .primary-icon-btn:focus {
   background: var(--plusButtonHover);
-  color: #fff;
+  color: var(--backgroundColor);
 }
 
 .danger-icon-btn {
   background: var(--deleteButton);
-  color: #fff;
+  color: var(--backgroundColor);
 }
 .danger-icon-btn:hover,
 .danger-icon-btn:focus {
   background: var(--deleteButtonHover);
-  color: #fff;
+  color: var(--backgroundColor);
 }

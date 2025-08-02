@@ -40,7 +40,7 @@ const ShoppingListPage: React.FC = () => {
 
   // Proklik na detail seznamu
   const handleSelect = (id: string) => {
-    navigate(`/list/${id}`);
+    navigate(`/detail/${id}`);
   };
 
   return (
@@ -49,20 +49,23 @@ const ShoppingListPage: React.FC = () => {
         existingNames={lists.map((l) => l.name)}
         onCreate={handleCreate}
       />
-      <h2>Nákupní Seznamy</h2>
-      {lists.length === 0 ? (
-        <p>Žádné seznamy</p>
-      ) : (
-        lists.map((list) => (
-          <ShoppingListItem
-            key={list.id}
-            list={list}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onSelect={handleSelect}
-          />
-        ))
-      )}
+      <div className="shoppinglist-center-wrapper">
+        <div className="shoppinglist-list-wrapper">
+          {lists.length === 0 ? (
+            <p>Zatím tu nejsou žádné nákupní seznamy</p>
+          ) : (
+            lists.map((list) => (
+              <ShoppingListItem
+                key={list.id}
+                list={list}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                onSelect={handleSelect}
+              />
+            ))
+          )}
+        </div>
+      </div>
     </div>
   );
 };

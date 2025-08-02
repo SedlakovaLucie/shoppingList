@@ -35,25 +35,18 @@ const ShoppingListItem: React.FC<Props> = ({
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "8px 0" }}>
+    <div className="shoppinglist-item-wrapper">
       {isEditing ? (
         <>
           <input
+            className="shoppinglist-item-edit-input"
             value={editName}
-            onChange={e => setEditName(e.target.value)}
-            onKeyDown={e => {
+            onChange={(e) => setEditName(e.target.value)}
+            onKeyDown={(e) => {
               if (e.key === "Enter") handleSave();
               if (e.key === "Escape") handleCancel();
             }}
             autoFocus
-            style={{
-              flex: 1,
-              fontSize: "1em",
-              marginRight: 8,
-              padding: "10px 14px",
-              borderRadius: "8px",
-              border: "1px solid #ccc"
-            }}
           />
           <CancelButton onClick={handleCancel} />
           <SaveButton onClick={handleSave} />
@@ -61,13 +54,11 @@ const ShoppingListItem: React.FC<Props> = ({
       ) : (
         <>
           <span
+            className="shoppinglist-item-name"
             onClick={() => onSelect(list.id)}
-            style={{
-              textDecoration: "underline",
-              color: "blue",
-              cursor: "pointer",
-              flex: 1,
-            }}
+            tabIndex={0}
+            onKeyDown={(e) => (e.key === "Enter" ? onSelect(list.id) : null)}
+            role="button"
           >
             {list.name}
           </span>

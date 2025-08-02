@@ -9,7 +9,7 @@ import logo from "../../assets/seznam_s_logo.svg";
 
 type Props = {
   existingNames: string[];
-  onCreate: (name: string, desc: string, items: ShoppingListItem[]) => void;
+  onCreate: (name: string, items: ShoppingListItem[]) => void;
 };
 
 const emptyRow = (): ShoppingListItem => ({
@@ -21,7 +21,6 @@ const emptyRow = (): ShoppingListItem => ({
 
 const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
   const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
   const [rows, setRows] = useState<ShoppingListItem[]>([emptyRow()]);
   const [errorName, setErrorName] = useState<string | null>(null);
   const [errorItems, setErrorItems] = useState<boolean>(false);
@@ -74,9 +73,8 @@ const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
 
     if (hasError) return;
 
-    onCreate(name.trim(), desc.trim(), filled);
+    onCreate(name.trim(), filled);
     setName("");
-    setDesc("");
     setRows([emptyRow()]);
     setErrorName(null);
     setErrorItems(false);
