@@ -1,0 +1,37 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 20px;
+}
+
+.navbar-seznam {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--fontColor);
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo-inline {
+  height: 1.2em;
+  width: auto;
+  vertical-align: -0.12em;
+  margin-right: 1px;
+  display: inline-block;
+}
+
+.navbar-seznam-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: filter 0.13s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-seznam-link:hover,
+.navbar-seznam-link:focus {
+  cursor: pointer;
+}
+
