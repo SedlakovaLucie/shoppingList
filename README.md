@@ -11,16 +11,13 @@ https://tobuylist.netlify.app
 ## To Do
 - [ ] Přidat našeptávač pro textové pole
 - [ ] Přidat paginaci
-- [ ] optimalizace designu pro Safari
+- [ ] Optimalizace designu pro Safari
 
 ## Spuštění projektu
 Pro spuštění této React aplikace je potřeba mít nainstalovaný Git a Node.js (včetně npm). Postupujte následovně:
 ```bash
 # Naklonujte tento repozitář
 https://github.com/SedlakovaLucie/shoppingList.git
-
-# Vstupte do vytvořené složky
-cd shoppingList
 
 # Nainstalujte
 npm install
