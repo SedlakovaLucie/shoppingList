@@ -1,48 +1,56 @@
-.addnewitem-row {
+.addnewitem-row-outer {
   display: flex;
+  flex-direction: column;
   gap: 8px;
-  align-items: center;
   margin-bottom: 6px;
 }
 
+.addnewitem-row-inputs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
 .addnewitem-input {
-  width: 220px;
+  width: 100%;
+  max-width: 220px;
   font-size: 1em;
   border: 1px solid #bbb;
   border-radius: 80px;
   padding: 12px 18px;
   color: var(--fontColor);
+  flex: 1 1 0;
 }
 
 .addnewitem-count {
-  width: 70px;
+  width: 100%;
+  max-width: 70px;
   font-size: 1em;
   border: 1px solid #bbb;
   border-radius: 80px;
   padding: 12px 8px;
   color: var(--fontColor);
   text-align: center;
+  flex: 0 1 70px;
 }
 
 .addnewitem-unit {
-  width: 90px;
+  width: 100%;
+  max-width: 90px;
   font-size: 1em;
   border: 1px solid #bbb;
   border-radius: 80px;
   padding: 12px 8px;
   color: var(--fontColor);
+  flex: 0 1 90px;
 }
 
-.addnewitem-add-row {
-  margin-top: 10px;
+.addnewitem-row-buttons {
   display: flex;
+  gap: 16px;
   justify-content: flex-start;
-}
-
-.addnewitem-input:focus,
-.addnewitem-count:focus,
-.addnewitem-unit:focus {
-  outline: none;
-  border-color: var(--inputBlueColor, var(--inputBlueColor));
-  box-shadow: 0 0 0 2px #7dbfff22;
+  padding-left: 2px;
+  margin-top: 4px;
 }

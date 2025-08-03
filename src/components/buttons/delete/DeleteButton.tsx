@@ -1,4 +1,3 @@
-// components/buttons/delete/DeleteButton.tsx
 import React from "react";
 import { MdDelete } from "react-icons/md";
 import "../Buttons.css";

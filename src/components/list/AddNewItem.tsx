@@ -45,36 +45,40 @@ const AddNewItem: React.FC<Props> = ({ existingNames, onAdd }) => {
     );
 
   return (
-    <div className="addnewitem-row">
-      <input
-        className="addnewitem-input"
-        value={newItem.name}
-        onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
-        placeholder="Název položky"
-        autoFocus
-      />
-      <input
-        className="addnewitem-count"
-        type="number"
-        min={1}
-        value={newItem.count}
-        onChange={(e) =>
-          setNewItem({ ...newItem, count: Number(e.target.value) })
-        }
-      />
-      <select
-        className="addnewitem-unit"
-        value={newItem.unit}
-        onChange={(e) => setNewItem({ ...newItem, unit: e.target.value })}
-      >
-        {ITEM_UNITS.map((u) => (
-          <option key={u} value={u}>
-            {u}
-          </option>
-        ))}
-      </select>
-      <SaveButton onClick={handleAdd} />
-      <CancelButton onClick={() => setNewItem(null)} />
+    <div className="addnewitem-row-outer">
+      <div className="addnewitem-row-inputs">
+        <input
+          className="addnewitem-input"
+          value={newItem.name}
+          onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+          placeholder="Název položky"
+          autoFocus
+        />
+        <input
+          className="addnewitem-count"
+          type="number"
+          min={1}
+          value={newItem.count}
+          onChange={(e) =>
+            setNewItem({ ...newItem, count: Number(e.target.value) })
+          }
+        />
+        <select
+          className="addnewitem-unit"
+          value={newItem.unit}
+          onChange={(e) => setNewItem({ ...newItem, unit: e.target.value })}
+        >
+          {ITEM_UNITS.map((u) => (
+            <option key={u} value={u}>
+              {u}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="addnewitem-row-buttons">
+        <SaveButton onClick={handleAdd} />
+        <CancelButton onClick={() => setNewItem(null)} />
+      </div>
     </div>
   );
 };

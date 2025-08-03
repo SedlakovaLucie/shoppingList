@@ -4,9 +4,16 @@ import ShoppingListForm from "../../components/form/ShoppingListForm";
 import ShoppingListItem from "../../components/form/ShoppingListItem";
 import { loadShoppingLists, saveShoppingLists } from "../../utils/localStorage";
 import type { ShoppingList, ShoppingListItem as ItemType } from "../../types";
+import type { DragEndEvent } from "@dnd-kit/core";
+
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 const ShoppingListPage: React.FC = () => {
-  // Načtení seznamů z localStorage
   const [lists, setLists] = useState<ShoppingList[]>(loadShoppingLists());
   const navigate = useNavigate();
 
@@ -38,9 +45,20 @@ const ShoppingListPage: React.FC = () => {
     saveShoppingLists(newLists);
   };
 
-  // Proklik na detail seznamu
+  // Proklik na detail
   const handleSelect = (id: string) => {
     navigate(`/detail/${id}`);
+  };
+
+  // Drag and drop
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const oldIndex = lists.findIndex((l) => l.id === active.id);
+    const newIndex = lists.findIndex((l) => l.id === over.id);
+    const newLists = arrayMove(lists, oldIndex, newIndex);
+    setLists(newLists);
+    saveShoppingLists(newLists);
   };
 
   return (
@@ -50,21 +68,31 @@ const ShoppingListPage: React.FC = () => {
         onCreate={handleCreate}
       />
       <div className="shoppinglist-center-wrapper">
-        <div className="shoppinglist-list-wrapper">
-          {lists.length === 0 ? (
-            <p>Zatím tu nejsou žádné nákupní seznamy</p>
-          ) : (
-            lists.map((list) => (
-              <ShoppingListItem
-                key={list.id}
-                list={list}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                onSelect={handleSelect}
-              />
-            ))
-          )}
-        </div>
+        <DndContext
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={lists.map((l) => l.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="shoppinglist-list-wrapper">
+              {lists.length === 0 ? (
+                <p>Zatím tu nejsou žádné nákupní seznamy</p>
+              ) : (
+                lists.map((list) => (
+                  <ShoppingListItem
+                    key={list.id}
+                    list={list}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                    onSelect={handleSelect}
+                  />
+                ))
+              )}
+            </div>
+          </SortableContext>
+        </DndContext>
       </div>
     </div>
   );

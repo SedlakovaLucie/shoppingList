@@ -4,6 +4,9 @@ import EditButton from "../buttons/edit/EditButton";
 import DeleteButton from "../buttons/delete/DeleteButton";
 import SaveButton from "../buttons/save/SaveButton";
 import CancelButton from "../buttons/cancel/CancelButton";
+import { MdDragIndicator } from "react-icons/md";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import "./ShoppingListItem.css";
 
 type Props = {
@@ -22,6 +25,23 @@ const ShoppingListItem: React.FC<Props> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(list.name);
 
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: list.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.6 : 1,
+    background: isDragging ? "#f5f5f5" : undefined,
+    zIndex: isDragging ? 2 : 1,
+  };
+
   const handleSave = () => {
     if (editName.trim() && editName.trim() !== list.name) {
       onEdit(list.id, editName.trim());
@@ -35,7 +55,20 @@ const ShoppingListItem: React.FC<Props> = ({
   };
 
   return (
-    <div className="shoppinglist-item-wrapper">
+    <div
+      className="shoppinglist-item-wrapper"
+      ref={setNodeRef}
+      style={style}
+    >
+      <span
+        className="shoppinglist-item-drag"
+        {...attributes}
+        {...listeners}
+        tabIndex={-1}
+        title="Přetáhnout"
+      >
+        <MdDragIndicator />
+      </span>
       {isEditing ? (
         <>
           <input
