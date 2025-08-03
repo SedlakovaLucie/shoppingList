@@ -1,0 +1,24 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.error-container h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.error-container p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.shoppinglist-submit.error-button {
+  padding: 20px;
+}

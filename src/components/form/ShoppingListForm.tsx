@@ -90,13 +90,13 @@ const ShoppingListForm: React.FC<Props> = ({ existingNames, onCreate }) => {
         }}
         autoComplete="off"
       >
-        <h2 className="shoppinglist-title">
+        <h1 className="shoppinglist-title">
           Vytvořit nákupní{" "}
           <span className="shoppinglist-title-seznam">
             <img src={logo} alt="S" className="seznam-logo-inline" />
             eznam
           </span>
-        </h2>
+        </h1>
 
         <div className="shoppinglist-form-row">
           <input

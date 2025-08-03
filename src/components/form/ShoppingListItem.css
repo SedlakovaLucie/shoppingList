@@ -91,7 +91,7 @@
 /* Mobile reponsive */
 @media (max-width: 600px) {
   .shoppinglist-item-wrapper {
-    padding: 10px 6px;
+    padding: 10px 8px;
     font-size: 1em;
   }
   .shoppinglist-item-name {
